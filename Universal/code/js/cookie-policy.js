@@ -1,5 +1,5 @@
 function initCookiePolicy() {
-    // Self-contained CSS embedded directly to guarantee 100% rendering on all hosts/CDNs/GitHub Pages
+    // Self-contained CSS embedded directly to match the design screenshot perfectly
     const widgetHTML = `
         <style>
             .cookie-widget-btn {
@@ -8,7 +8,7 @@ function initCookiePolicy() {
                 left: 30px !important;
                 width: 60px !important;
                 height: 60px !important;
-                background-color: #1351d8 !important;
+                background-color: #1d4ed8 !important;
                 border-radius: 50% !important;
                 display: flex !important;
                 justify-content: center !important;
@@ -22,12 +22,12 @@ function initCookiePolicy() {
                 opacity: 1 !important;
             }
             .cookie-widget-btn:hover {
-                background-color: #0b3ba3 !important;
+                background-color: #1e40af !important;
                 transform: scale(1.08) !important;
             }
             .cookie-widget-btn svg {
-                width: 32px !important;
-                height: 32px !important;
+                width: 30px !important;
+                height: 30px !important;
                 fill: #ffffff !important;
                 transition: fill 0.3s ease !important;
                 pointer-events: none !important;
@@ -38,7 +38,7 @@ function initCookiePolicy() {
                 left: 0 !important;
                 width: 100vw !important;
                 height: 100vh !important;
-                background-color: rgba(0, 0, 0, 0.55) !important;
+                background-color: rgba(0, 0, 0, 0.65) !important;
                 z-index: 100000000 !important;
                 display: flex !important;
                 justify-content: center !important;
@@ -53,13 +53,13 @@ function initCookiePolicy() {
             }
             .cookie-modal {
                 background-color: #ffffff !important;
-                border: 1px solid #e2e8f0 !important;
-                color: #1a202c !important;
+                border: none !important;
+                color: #0f172a !important;
                 border-radius: 16px !important;
-                width: 92% !important;
-                max-width: 650px !important;
-                padding: 28px !important;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+                width: 90% !important;
+                max-width: 580px !important;
+                padding: 36px !important;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35) !important;
                 box-sizing: border-box !important;
                 font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
             }
@@ -70,54 +70,60 @@ function initCookiePolicy() {
                 margin-bottom: 16px !important;
             }
             .cookie-modal-title {
-                font-size: 22px !important;
+                font-size: 24px !important;
                 font-weight: 700 !important;
                 margin: 0 !important;
-                color: #1a202c !important;
+                color: #0f172a !important;
+                letter-spacing: -0.02em !important;
             }
             .cookie-modal-close {
                 background: none !important;
                 border: none !important;
-                font-size: 28px !important;
-                color: #a0aec0 !important;
+                font-size: 24px !important;
+                color: #94a3b8 !important;
                 cursor: pointer !important;
                 line-height: 1 !important;
                 padding: 0 !important;
             }
             .cookie-modal-close:hover {
-                color: #1a202c !important;
+                color: #0f172a !important;
             }
             .cookie-modal-body p {
                 font-size: 14px !important;
-                color: #4a5568 !important;
+                color: #475569 !important;
                 line-height: 1.6 !important;
                 margin-top: 0 !important;
-                margin-bottom: 22px !important;
+                margin-bottom: 24px !important;
             }
             .cookie-toggles {
                 display: flex !important;
                 flex-direction: column !important;
-                gap: 14px !important;
-                margin-bottom: 26px !important;
+                gap: 18px !important;
+                margin-bottom: 32px !important;
             }
             .cookie-toggle-row {
                 display: flex !important;
                 justify-content: space-between !important;
                 align-items: center !important;
-                background: #f7fafc !important;
-                border: 1px solid #edf2f7 !important;
-                padding: 14px 18px !important;
-                border-radius: 12px !important;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                padding-bottom: 14px !important;
+            }
+            .cookie-toggle-row:last-child {
+                border-bottom: none !important;
+                padding-bottom: 0 !important;
             }
             .cookie-toggle-label {
                 font-weight: 600 !important;
                 font-size: 15px !important;
-                color: #1a202c !important;
+                color: #0f172a !important;
             }
             .cookie-toggle-desc {
                 font-size: 12px !important;
-                color: #718096 !important;
-                margin-top: 2px !important;
+                color: #64748b !important;
+                margin-top: 3px !important;
             }
             .cookie-switch {
                 position: relative !important;
@@ -138,7 +144,7 @@ function initCookiePolicy() {
                 left: 0 !important;
                 right: 0 !important;
                 bottom: 0 !important;
-                background-color: #cbd5e0 !important;
+                background-color: #cbd5e1 !important;
                 transition: .3s !important;
                 border-radius: 26px !important;
             }
@@ -152,10 +158,10 @@ function initCookiePolicy() {
                 background-color: white !important;
                 transition: .3s !important;
                 border-radius: 50% !important;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
             }
             .cookie-switch input:checked + .cookie-slider {
-                background-color: #1351d8 !important;
+                background-color: #6366f1 !important;
             }
             .cookie-switch input:checked + .cookie-slider:before {
                 transform: translateX(20px) !important;
@@ -166,7 +172,7 @@ function initCookiePolicy() {
                 gap: 12px !important;
             }
             .cookie-btn {
-                padding: 11px 20px !important;
+                padding: 11px 22px !important;
                 border-radius: 8px !important;
                 font-size: 14px !important;
                 font-weight: 600 !important;
@@ -175,19 +181,19 @@ function initCookiePolicy() {
                 transition: background-color 0.2s ease, transform 0.1s ease !important;
             }
             .cookie-btn-secondary {
-                background-color: #edf2f7 !important;
-                border: 1px solid #cbd5e0 !important;
-                color: #2d3748 !important;
+                background-color: #f1f5f9 !important;
+                border: none !important;
+                color: #334155 !important;
             }
             .cookie-btn-secondary:hover {
                 background-color: #e2e8f0 !important;
             }
             .cookie-btn-primary {
-                background-color: #1351d8 !important;
+                background-color: #1d4ed8 !important;
                 color: #ffffff !important;
             }
             .cookie-btn-primary:hover {
-                background-color: #0b3ba3 !important;
+                background-color: #1e40af !important;
             }
         </style>
 
