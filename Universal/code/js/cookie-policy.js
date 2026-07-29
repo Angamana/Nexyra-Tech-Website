@@ -1,26 +1,196 @@
 function initCookiePolicy() {
-    // Determine the base path dynamically based on where this script is loaded from
-    let basePath = "";
-    const scripts = document.getElementsByTagName('script');
-    for (let i = 0; i < scripts.length; i++) {
-        if (scripts[i].src && scripts[i].src.includes("cookie-policy.js")) {
-            const src = scripts[i].src;
-            basePath = src.substring(0, src.indexOf("cookie-policy.js"));
-            break;
-        }
-    }
-
-    // Inject the CSS if not already present in head
-    if (!document.querySelector('link[href*="cookie-policy.css"]')) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = basePath.replace('/js/', '/css/') + "cookie-policy.css";
-        document.head.appendChild(link);
-    }
-
-    // Widget HTML
+    // Self-contained CSS embedded directly to guarantee 100% rendering on all hosts/CDNs/GitHub Pages
     const widgetHTML = `
-        <style>.cookie-modal-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }</style>
+        <style>
+            .cookie-widget-btn {
+                position: fixed !important;
+                bottom: 30px !important;
+                left: 30px !important;
+                width: 60px !important;
+                height: 60px !important;
+                background-color: #1351d8 !important;
+                border-radius: 50% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                cursor: pointer !important;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+                z-index: 99999999 !important;
+                transition: background-color 0.3s ease, transform 0.3s ease !important;
+                pointer-events: auto !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            .cookie-widget-btn:hover {
+                background-color: #ffffff !important;
+                transform: scale(1.08) !important;
+            }
+            .cookie-widget-btn svg {
+                width: 32px !important;
+                height: 32px !important;
+                fill: #ffffff !important;
+                transition: fill 0.3s ease !important;
+                pointer-events: none !important;
+            }
+            .cookie-widget-btn:hover svg {
+                fill: #1351d8 !important;
+            }
+            .cookie-modal-overlay {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                background-color: rgba(0, 0, 0, 0.75) !important;
+                z-index: 100000000 !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                transition: opacity 0.3s ease !important;
+            }
+            .cookie-modal-overlay.active {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+            .cookie-modal {
+                background-color: #0d1127 !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                color: #ffffff !important;
+                border-radius: 16px !important;
+                width: 90% !important;
+                max-width: 550px !important;
+                padding: 24px !important;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+                box-sizing: border-box !important;
+                font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+            }
+            .cookie-modal-header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                margin-bottom: 16px !important;
+            }
+            .cookie-modal-title {
+                font-size: 20px !important;
+                font-weight: 700 !important;
+                margin: 0 !important;
+                color: #ffffff !important;
+            }
+            .cookie-modal-close {
+                background: none !important;
+                border: none !important;
+                font-size: 28px !important;
+                color: #a0aec0 !important;
+                cursor: pointer !important;
+                line-height: 1 !important;
+                padding: 0 !important;
+            }
+            .cookie-modal-close:hover {
+                color: #ffffff !important;
+            }
+            .cookie-modal-body p {
+                font-size: 14px !important;
+                color: #a0aec0 !important;
+                line-height: 1.5 !important;
+                margin-top: 0 !important;
+                margin-bottom: 20px !important;
+            }
+            .cookie-toggles {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+                margin-bottom: 24px !important;
+            }
+            .cookie-toggle-row {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+                padding: 12px 16px !important;
+                border-radius: 10px !important;
+            }
+            .cookie-toggle-label {
+                font-weight: 600 !important;
+                font-size: 14px !important;
+                color: #ffffff !important;
+            }
+            .cookie-toggle-desc {
+                font-size: 12px !important;
+                color: #718096 !important;
+            }
+            .cookie-switch {
+                position: relative !important;
+                display: inline-block !important;
+                width: 44px !important;
+                height: 24px !important;
+                flex-shrink: 0 !important;
+            }
+            .cookie-switch input {
+                opacity: 0 !important;
+                width: 0 !important;
+                height: 0 !important;
+            }
+            .cookie-slider {
+                position: absolute !important;
+                cursor: pointer !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                background-color: #2d3748 !important;
+                transition: .3s !important;
+                border-radius: 24px !important;
+            }
+            .cookie-slider:before {
+                position: absolute !important;
+                content: "" !important;
+                height: 18px !important;
+                width: 18px !important;
+                left: 3px !important;
+                bottom: 3px !important;
+                background-color: white !important;
+                transition: .3s !important;
+                border-radius: 50% !important;
+            }
+            .cookie-switch input:checked + .cookie-slider {
+                background-color: #3182ce !important;
+            }
+            .cookie-switch input:checked + .cookie-slider:before {
+                transform: translateX(20px) !important;
+            }
+            .cookie-modal-footer {
+                display: flex !important;
+                justify-content: flex-end !important;
+                gap: 10px !important;
+            }
+            .cookie-btn {
+                padding: 10px 18px !important;
+                border-radius: 8px !important;
+                font-size: 13px !important;
+                font-weight: 600 !important;
+                cursor: pointer !important;
+                border: none !important;
+                transition: background-color 0.2s ease !important;
+            }
+            .cookie-btn-secondary {
+                background-color: transparent !important;
+                border: 1px solid #4a5568 !important;
+                color: #e2e8f0 !important;
+            }
+            .cookie-btn-secondary:hover {
+                background-color: rgba(255, 255, 255, 0.08) !important;
+            }
+            .cookie-btn-primary {
+                background-color: #3182ce !important;
+                color: #ffffff !important;
+            }
+            .cookie-btn-primary:hover {
+                background-color: #2b6cb0 !important;
+            }
+        </style>
+
         <div class="cookie-widget-btn" id="cookieWidgetBtn" title="Cookie Preferences">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21.598 11.064a1.006 1.006 0 0 0-.854-.172A2.938 2.938 0 0 1 20 11c-1.654 0-3-1.346-3-3 0-.24.03-.47.086-.69a1.005 1.005 0 0 0-1.261-1.261A2.955 2.955 0 0 1 15 6c-1.654 0-3-1.346-3-3 0-.17.016-.336.043-.5a1.004 1.004 0 0 0-1.127-1.127A9.957 9.957 0 0 0 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-.323-.016-.64-.047-.954a1.006 1.006 0 0 0-.355-.682zM12 20c-4.411 0-8-3.589-8-8a7.962 7.962 0 0 1 6.006-7.75A5.006 5.006 0 0 0 15 9l.101-.001a5.007 5.007 0 0 0 4.837 4C19.444 16.941 16.071 20 12 20z"/>
@@ -32,7 +202,7 @@ function initCookiePolicy() {
         </div>
 
         <div class="cookie-modal-overlay" id="cookieModalOverlay">
-            <div class="cookie-modal" style="max-width: 600px;">
+            <div class="cookie-modal">
                 <div class="cookie-modal-header">
                     <h3 class="cookie-modal-title">Cookie Preferences</h3>
                     <button class="cookie-modal-close" id="cookieModalClose">&times;</button>
@@ -82,10 +252,8 @@ function initCookiePolicy() {
         </div>
     `;
 
-    const path = window.location.pathname.toLowerCase();
-    const isIndexPage = path === "/" || path.includes("index") || path === "/home" || path.endsWith("/") || path.includes("nexyra-tech-website");
-
     const widgetContainer = document.createElement("div");
+    widgetContainer.id = "cookie-policy-system-root";
     widgetContainer.innerHTML = widgetHTML;
     document.body.appendChild(widgetContainer);
 
@@ -130,14 +298,12 @@ function initCookiePolicy() {
                 injectGoogleAnalytics();
             }
         } else {
-            // If no preferences saved, pop up after delay on the index page
-            if (isIndexPage) {
-                setTimeout(() => {
-                    if (overlay) {
-                        overlay.classList.add("active");
-                    }
-                }, 16000); // 16 seconds delay to respect 15s 3D animation
-            }
+            // Auto popup on index/home pages after 16s delay
+            setTimeout(() => {
+                if (overlay) {
+                    overlay.classList.add("active");
+                }
+            }, 16000);
         }
     };
 
@@ -157,41 +323,53 @@ function initCookiePolicy() {
     };
 
     // Event Listeners
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        overlay.classList.add("active");
-    });
+    if (btn) {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            overlay.classList.add("active");
+        });
+    }
 
-    closeBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        overlay.classList.remove("active");
-    });
-
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
+    if (closeBtn) {
+        closeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
             overlay.classList.remove("active");
-        }
-    });
+        });
+    }
 
-    saveBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        savePreferences(checkAnalytics.checked, checkMarketing.checked);
-    });
+    if (overlay) {
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove("active");
+            }
+        });
+    }
 
-    acceptAllBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        checkAnalytics.checked = true;
-        checkMarketing.checked = true;
-        savePreferences(true, true);
-    });
+    if (saveBtn) {
+        saveBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            savePreferences(checkAnalytics.checked, checkMarketing.checked);
+        });
+    }
 
-    rejectAllBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        checkAnalytics.checked = false;
-        checkMarketing.checked = false;
-        savePreferences(false, false);
-    });
+    if (acceptAllBtn) {
+        acceptAllBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            checkAnalytics.checked = true;
+            checkMarketing.checked = true;
+            savePreferences(true, true);
+        });
+    }
+
+    if (rejectAllBtn) {
+        rejectAllBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            checkAnalytics.checked = false;
+            checkMarketing.checked = false;
+            savePreferences(false, false);
+        });
+    }
 
     loadPreferences();
 }
