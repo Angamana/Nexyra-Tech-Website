@@ -15,7 +15,7 @@ function initCookiePolicy() {
                 align-items: center !important;
                 cursor: pointer !important;
                 box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
-                z-index: 99999999 !important;
+                z-index: 9999 !important;
                 transition: background-color 0.3s ease, transform 0.3s ease !important;
                 pointer-events: auto !important;
                 visibility: visible !important;
