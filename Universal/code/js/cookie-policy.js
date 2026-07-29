@@ -83,7 +83,7 @@ function initCookiePolicy() {
     `;
 
     const path = window.location.pathname.toLowerCase();
-    const isIndexPage = path === "/" || path.includes("/index") || path === "/home";
+    const isIndexPage = path === "/" || path.includes("index") || path === "/home" || path.endsWith("/") || path.includes("nexyra-tech-website");
 
     const widgetContainer = document.createElement("div");
     widgetContainer.innerHTML = widgetHTML;
