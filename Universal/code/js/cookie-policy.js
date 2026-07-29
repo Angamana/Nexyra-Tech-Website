@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+function initCookiePolicy() {
     // Determine the base path dynamically based on where this script is loaded from
     let basePath = "";
     const scripts = document.getElementsByTagName('script');
@@ -194,4 +194,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     loadPreferences();
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCookiePolicy);
+} else {
+    initCookiePolicy();
+}
