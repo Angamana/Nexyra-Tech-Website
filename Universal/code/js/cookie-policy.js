@@ -10,14 +10,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Inject the CSS
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    // We assume cookie-policy.css is in ../css/cookie-policy.css relative to the js folder
-    // But wait, the script src will be Universal/code/js/cookie-policy.js
-    // So css is in Universal/code/css/cookie-policy.css
-    link.href = basePath.replace('/js/', '/css/') + "cookie-policy.css";
-    document.head.appendChild(link);
+    // Inject the CSS if not already present in head
+    if (!document.querySelector('link[href*="cookie-policy.css"]')) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = basePath.replace('/js/', '/css/') + "cookie-policy.css";
+        document.head.appendChild(link);
+    }
 
     // Widget HTML
     const widgetHTML = `
@@ -137,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (overlay) {
                         overlay.classList.add("active");
                     }
-                }, 16000); // 16 seconds delay
+                }, 2000); // 2 seconds delay
             }
         }
     };
