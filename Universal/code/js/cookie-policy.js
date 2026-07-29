@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (overlay) {
                         overlay.classList.add("active");
                     }
-                }, 2000); // 2 seconds delay
+                }, 16000); // 16 seconds delay to respect 15s 3D animation
             }
         }
     };
