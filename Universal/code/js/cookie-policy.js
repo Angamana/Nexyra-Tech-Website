@@ -14,7 +14,7 @@ function initCookiePolicy() {
                 justify-content: center !important;
                 align-items: center !important;
                 cursor: pointer !important;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
                 z-index: 99999999 !important;
                 transition: background-color 0.3s ease, transform 0.3s ease !important;
                 pointer-events: auto !important;
@@ -22,7 +22,7 @@ function initCookiePolicy() {
                 opacity: 1 !important;
             }
             .cookie-widget-btn:hover {
-                background-color: #ffffff !important;
+                background-color: #0b3ba3 !important;
                 transform: scale(1.08) !important;
             }
             .cookie-widget-btn svg {
@@ -32,16 +32,13 @@ function initCookiePolicy() {
                 transition: fill 0.3s ease !important;
                 pointer-events: none !important;
             }
-            .cookie-widget-btn:hover svg {
-                fill: #1351d8 !important;
-            }
             .cookie-modal-overlay {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
                 width: 100vw !important;
                 height: 100vh !important;
-                background-color: rgba(0, 0, 0, 0.75) !important;
+                background-color: rgba(0, 0, 0, 0.55) !important;
                 z-index: 100000000 !important;
                 display: flex !important;
                 justify-content: center !important;
@@ -55,14 +52,14 @@ function initCookiePolicy() {
                 pointer-events: auto !important;
             }
             .cookie-modal {
-                background-color: #0d1127 !important;
-                border: 1px solid rgba(255, 255, 255, 0.15) !important;
-                color: #ffffff !important;
+                background-color: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                color: #1a202c !important;
                 border-radius: 16px !important;
-                width: 90% !important;
-                max-width: 550px !important;
-                padding: 24px !important;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+                width: 92% !important;
+                max-width: 650px !important;
+                padding: 28px !important;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
                 box-sizing: border-box !important;
                 font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
             }
@@ -73,10 +70,10 @@ function initCookiePolicy() {
                 margin-bottom: 16px !important;
             }
             .cookie-modal-title {
-                font-size: 20px !important;
+                font-size: 22px !important;
                 font-weight: 700 !important;
                 margin: 0 !important;
-                color: #ffffff !important;
+                color: #1a202c !important;
             }
             .cookie-modal-close {
                 background: none !important;
@@ -88,43 +85,45 @@ function initCookiePolicy() {
                 padding: 0 !important;
             }
             .cookie-modal-close:hover {
-                color: #ffffff !important;
+                color: #1a202c !important;
             }
             .cookie-modal-body p {
                 font-size: 14px !important;
-                color: #a0aec0 !important;
-                line-height: 1.5 !important;
+                color: #4a5568 !important;
+                line-height: 1.6 !important;
                 margin-top: 0 !important;
-                margin-bottom: 20px !important;
+                margin-bottom: 22px !important;
             }
             .cookie-toggles {
                 display: flex !important;
                 flex-direction: column !important;
-                gap: 16px !important;
-                margin-bottom: 24px !important;
+                gap: 14px !important;
+                margin-bottom: 26px !important;
             }
             .cookie-toggle-row {
                 display: flex !important;
                 justify-content: space-between !important;
                 align-items: center !important;
-                background: rgba(255, 255, 255, 0.04) !important;
-                padding: 12px 16px !important;
-                border-radius: 10px !important;
+                background: #f7fafc !important;
+                border: 1px solid #edf2f7 !important;
+                padding: 14px 18px !important;
+                border-radius: 12px !important;
             }
             .cookie-toggle-label {
                 font-weight: 600 !important;
-                font-size: 14px !important;
-                color: #ffffff !important;
+                font-size: 15px !important;
+                color: #1a202c !important;
             }
             .cookie-toggle-desc {
                 font-size: 12px !important;
                 color: #718096 !important;
+                margin-top: 2px !important;
             }
             .cookie-switch {
                 position: relative !important;
                 display: inline-block !important;
-                width: 44px !important;
-                height: 24px !important;
+                width: 46px !important;
+                height: 26px !important;
                 flex-shrink: 0 !important;
             }
             .cookie-switch input {
@@ -139,23 +138,24 @@ function initCookiePolicy() {
                 left: 0 !important;
                 right: 0 !important;
                 bottom: 0 !important;
-                background-color: #2d3748 !important;
+                background-color: #cbd5e0 !important;
                 transition: .3s !important;
-                border-radius: 24px !important;
+                border-radius: 26px !important;
             }
             .cookie-slider:before {
                 position: absolute !important;
                 content: "" !important;
-                height: 18px !important;
-                width: 18px !important;
+                height: 20px !important;
+                width: 20px !important;
                 left: 3px !important;
                 bottom: 3px !important;
                 background-color: white !important;
                 transition: .3s !important;
                 border-radius: 50% !important;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
             }
             .cookie-switch input:checked + .cookie-slider {
-                background-color: #3182ce !important;
+                background-color: #1351d8 !important;
             }
             .cookie-switch input:checked + .cookie-slider:before {
                 transform: translateX(20px) !important;
@@ -163,31 +163,31 @@ function initCookiePolicy() {
             .cookie-modal-footer {
                 display: flex !important;
                 justify-content: flex-end !important;
-                gap: 10px !important;
+                gap: 12px !important;
             }
             .cookie-btn {
-                padding: 10px 18px !important;
+                padding: 11px 20px !important;
                 border-radius: 8px !important;
-                font-size: 13px !important;
+                font-size: 14px !important;
                 font-weight: 600 !important;
                 cursor: pointer !important;
                 border: none !important;
-                transition: background-color 0.2s ease !important;
+                transition: background-color 0.2s ease, transform 0.1s ease !important;
             }
             .cookie-btn-secondary {
-                background-color: transparent !important;
-                border: 1px solid #4a5568 !important;
-                color: #e2e8f0 !important;
+                background-color: #edf2f7 !important;
+                border: 1px solid #cbd5e0 !important;
+                color: #2d3748 !important;
             }
             .cookie-btn-secondary:hover {
-                background-color: rgba(255, 255, 255, 0.08) !important;
+                background-color: #e2e8f0 !important;
             }
             .cookie-btn-primary {
-                background-color: #3182ce !important;
+                background-color: #1351d8 !important;
                 color: #ffffff !important;
             }
             .cookie-btn-primary:hover {
-                background-color: #2b6cb0 !important;
+                background-color: #0b3ba3 !important;
             }
         </style>
 
