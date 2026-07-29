@@ -1,0 +1,1 @@
+chrome-extension://hnbmpkmhjackfpkpcbapafmpepgmmddc/js/browser_dimensions_observer.js

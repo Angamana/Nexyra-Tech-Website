@@ -1,0 +1,10 @@
+# Tools & Downloads
+tools/
+*.zip
+
+# Logs
+*.log
+
+# OS Junk
+.DS_Store
+Thumbs.db

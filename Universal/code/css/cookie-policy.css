@@ -1,0 +1,219 @@
+/* Cookie Policy Widget Styles */
+
+.cookie-widget-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #1351d8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cookie-widget-btn:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
+}
+
+.cookie-widget-btn svg {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+    transition: fill 0.3s ease;
+}
+
+.cookie-widget-btn:hover svg {
+    fill: #1351d8;
+}
+
+/* Cookie Modal Styles */
+.cookie-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.cookie-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cookie-modal {
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    padding: 32px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #333333;
+}
+
+.cookie-modal-overlay.active .cookie-modal {
+    transform: translateY(0);
+}
+
+.cookie-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cookie-modal-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    color: #111111;
+}
+
+.cookie-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888888;
+    transition: color 0.2s ease;
+}
+
+.cookie-modal-close:hover {
+    color: #111111;
+}
+
+.cookie-modal-body {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.cookie-toggles {
+    margin-bottom: 24px;
+}
+
+.cookie-toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.cookie-toggle-row:last-child {
+    border-bottom: none;
+}
+
+.cookie-toggle-label {
+    font-weight: 500;
+}
+
+.cookie-toggle-desc {
+    font-size: 12px;
+    color: #666666;
+    margin-top: 4px;
+}
+
+/* Switch styling */
+.cookie-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.cookie-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cookie-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cccccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.cookie-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .cookie-slider {
+    background-color: #1351d8;
+}
+
+input:checked + .cookie-slider:before {
+    transform: translateX(20px);
+}
+
+input:disabled + .cookie-slider {
+    background-color: #1351d8;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cookie-modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.cookie-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: inherit;
+}
+
+.cookie-btn-secondary {
+    background-color: #f1f1f1;
+    color: #333333;
+}
+
+.cookie-btn-secondary:hover {
+    background-color: #e4e4e4;
+}
+
+.cookie-btn-primary {
+    background-color: #1351d8;
+    color: #ffffff;
+}
+
+.cookie-btn-primary:hover {
+    background-color: #0e3ea6;
+}

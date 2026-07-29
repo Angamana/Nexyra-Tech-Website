@@ -1,0 +1,1 @@
+chrome-extension://hnbmpkmhjackfpkpcbapafmpepgmmddc/js/idle_browser_capture.js
