@@ -195,6 +195,43 @@ function initCookiePolicy() {
             .cookie-btn-primary:hover {
                 background-color: #1e40af !important;
             }
+            @media (max-width: 600px) {
+                .cookie-modal {
+                    padding: 24px 20px !important;
+                    width: 92% !important;
+                    max-height: 88vh !important;
+                    overflow-y: auto !important;
+                }
+                .cookie-modal-title {
+                    font-size: 20px !important;
+                }
+                .cookie-modal-body p {
+                    font-size: 13px !important;
+                    margin-bottom: 18px !important;
+                }
+                .cookie-toggles {
+                    gap: 12px !important;
+                    margin-bottom: 22px !important;
+                }
+                .cookie-toggle-row {
+                    padding-bottom: 12px !important;
+                }
+                .cookie-toggle-desc {
+                    font-size: 11px !important;
+                    padding-right: 8px !important;
+                }
+                .cookie-modal-footer {
+                    flex-direction: column-reverse !important;
+                    width: 100% !important;
+                    gap: 8px !important;
+                }
+                .cookie-btn {
+                    width: 100% !important;
+                    text-align: center !important;
+                    padding: 12px 16px !important;
+                    box-sizing: border-box !important;
+                }
+            }
         </style>
 
         <div class="cookie-widget-btn" id="cookieWidgetBtn" title="Cookie Preferences">
