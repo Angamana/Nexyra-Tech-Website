@@ -385,3 +385,8 @@ if (document.readyState === "loading") {
 } else {
     initCookiePolicy();
 }
+
+// Disable right-click context menu globally across the website
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
